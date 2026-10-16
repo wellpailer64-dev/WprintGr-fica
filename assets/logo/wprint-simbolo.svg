@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="240" height="160">
+  <title>WPrint — símbolo</title>
+  <!-- W formado por quatro traços CMYK que se sobrepõem como tinta (multiply) -->
+  <g fill="none" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" style="mix-blend-mode:multiply">
+    <path d="M12 12 L36 68" stroke="#00A6D6" style="mix-blend-mode:multiply"/>
+    <path d="M36 68 L60 24" stroke="#E5197A" style="mix-blend-mode:multiply"/>
+    <path d="M60 24 L84 68" stroke="#FFC21A" style="mix-blend-mode:multiply"/>
+    <path d="M84 68 L108 12" stroke="#0E0E14" style="mix-blend-mode:multiply"/>
+  </g>
+</svg>

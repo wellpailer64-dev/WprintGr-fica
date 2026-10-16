@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WPrint Artes Gráficas — Gráfica rápida</title>
+  <meta name="description" content="WPrint Artes Gráficas: banners, placas, faixas, cartões de visita, ímãs, folhetos, flyers, notas fiscais, envelopes, calendários e convites. Peça seu orçamento pelo WhatsApp.">
+  <meta name="theme-color" content="#0E0E14">
+  <link rel="icon" href="assets/logo/wprint-simbolo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Símbolo reutilizável -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 120 80">
+      <g fill="none" stroke-width="17" stroke-linecap="round">
+        <path class="mk mk-c" d="M12 12 L36 68"/>
+        <path class="mk mk-m" d="M36 68 L60 24"/>
+        <path class="mk mk-y" d="M60 24 L84 68"/>
+        <path class="mk mk-k" d="M84 68 L108 12"/>
+      </g>
+    </symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24s8.24 3.7 8.24 8.24-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 7h12l1 13H5L6 7Zm3 0a3 3 0 0 1 6 0"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m20 20-4.2-4.2M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13"/></symbol>
+  </svg>
+
+  <!-- ===== Topo ===== -->
+  <header class="topbar" id="topo">
+    <div class="wrap topbar__in">
+      <a href="#inicio" class="logo" aria-label="WPrint Artes Gráficas — início">
+        <svg class="logo__mark"><use href="#mark"/></svg>
+        <span class="logo__txt"><b>print</b><i></i><small>Artes Gráficas</small></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#produtos">Produtos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+      <div class="topbar__act">
+        <a class="btn btn--ghost btn--sm hide-sm" href="https://wa.me/5511983294003" target="_blank" rel="noopener">
+          <svg class="ic"><use href="#i-wa"/></svg> (11) 98329-4003
+        </a>
+        <button class="cartbtn" type="button" data-open-cart aria-label="Abrir pedido">
+          <svg class="ic"><use href="#i-bag"/></svg>
+          <span class="cartbtn__n" data-cart-count hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="inicio">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="wrap hero__in">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="dot"></span> Gráfica rápida · Comunicação visual</p>
+          <h1>Sua marca <em>impressa</em> com cor, capricho e agilidade.</h1>
+          <p class="lead">Do cartão de visita ao banner da fachada: escolha o produto, monte seu pedido e fale direto com a gente pelo WhatsApp.</p>
+          <div class="hero__cta">
+            <a href="#produtos" class="btn btn--primary">Ver produtos <svg class="ic"><use href="#i-arrow"/></svg></a>
+            <a href="https://wa.me/5511983294003?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20WPrint%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" class="btn btn--light">
+              <svg class="ic"><use href="#i-wa"/></svg> Falar no WhatsApp
+            </a>
+          </div>
+          <ul class="hero__chips">
+            <li><span class="sw sw-c"></span>Orçamento sem compromisso</li>
+            <li><span class="sw sw-m"></span>Pagamento via PIX</li>
+            <li><span class="sw sw-y"></span>Atendimento direto</li>
+          </ul>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <div class="fan">
+            <span style="--r:-62deg;--c:#0E0E14"></span>
+            <span style="--r:-48deg;--c:#3B2A8C"></span>
+            <span style="--r:-34deg;--c:#00A6D6"></span>
+            <span style="--r:-20deg;--c:#16B79A"></span>
+            <span style="--r:-6deg;--c:#FFC21A"></span>
+            <span style="--r:8deg;--c:#FF7A1A"></span>
+            <span style="--r:22deg;--c:#E5197A"></span>
+            <span style="--r:36deg;--c:#B0124F"></span>
+          </div>
+          <div class="hero__card">
+            <svg class="hero__cardmark"><use href="#mark"/></svg>
+            <div class="hero__cardtxt">
+              <b>Wagner Pailer</b>
+              <span>Artes Gráficas</span>
+            </div>
+            <div class="cmyk"><i class="c"></i><i class="m"></i><i class="y"></i><i class="k"></i></div>
+          </div>
+          <div class="ink ink-c"></div>
+          <div class="ink ink-m"></div>
+          <div class="ink ink-y"></div>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Banners</span><span>Placas</span><span>Faixas</span><span>Cartões de visita</span><span>Ímãs de geladeira</span><span>Folhetos</span><span>Flyers</span><span>Notas fiscais</span><span>Envelopes</span><span>Calendários</span><span>Convites</span>
+          <span>Banners</span><span>Placas</span><span>Faixas</span><span>Cartões de visita</span><span>Ímãs de geladeira</span><span>Folhetos</span><span>Flyers</span><span>Notas fiscais</span><span>Envelopes</span><span>Calendários</span><span>Convites</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Produtos ===== -->
+    <section class="sec" id="produtos">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow eyebrow--dark"><span class="dot"></span> Catálogo</p>
+          <h2>O que a gente imprime</h2>
+          <p class="sec__sub">Toque em um produto, escolha as opções e adicione ao seu pedido. No final, é só enviar pelo WhatsApp.</p>
+        </header>
+
+        <div class="toolbar">
+          <label class="search">
+            <svg class="ic"><use href="#i-search"/></svg>
+            <input type="search" placeholder="Buscar produto…" data-search aria-label="Buscar produto">
+          </label>
+          <div class="chips" role="tablist" data-filters></div>
+        </div>
+
+        <div class="grid" data-grid></div>
+        <p class="empty" data-empty hidden>Nenhum produto encontrado. Não achou o que precisa? <a href="https://wa.me/5511983294003" target="_blank" rel="noopener">Pergunta pra gente no WhatsApp</a>.</p>
+      </div>
+    </section>
+
+    <!-- ===== Como funciona ===== -->
+    <section class="sec sec--dark" id="como-funciona">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow"><span class="dot"></span> Simples assim</p>
+          <h2>Como funciona</h2>
+        </header>
+        <ol class="steps">
+          <li>
+            <span class="steps__n">01</span>
+            <h3>Escolha</h3>
+            <p>Navegue pelo catálogo e selecione tamanho, quantidade e acabamento de cada item.</p>
+          </li>
+          <li>
+            <span class="steps__n">02</span>
+            <h3>Envie pelo WhatsApp</h3>
+            <p>Seu pedido vai prontinho para o nosso WhatsApp. Lá você manda sua arte ou pede a criação.</p>
+          </li>
+          <li>
+            <span class="steps__n">03</span>
+            <h3>Aprove e pague</h3>
+            <p>Você recebe o orçamento e a prova da arte. Aprovou? Pagamento fácil via PIX.</p>
+          </li>
+          <li>
+            <span class="steps__n">04</span>
+            <h3>Retire ou receba</h3>
+            <p>Impressão com qualidade e atenção aos detalhes. Combinamos a entrega com você.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Sobre ===== -->
+    <section class="sec" id="sobre">
+      <div class="wrap about">
+        <div class="about__art" aria-hidden="true">
+          <div class="about__sheet">
+            <svg><use href="#mark"/></svg>
+            <div class="about__bars"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="about__copy">
+          <p class="eyebrow eyebrow--dark"><span class="dot"></span> Sobre a WPrint</p>
+          <h2>Impressão com cuidado de quem conhece cada cliente pelo nome.</h2>
+          <p>A WPrint Artes Gráficas é a gráfica do Wagner Pailer. Atendimento próximo, sem burocracia: você fala direto com quem vai cuidar do seu material, da arte à entrega.</p>
+          <p>Trabalhamos com comunicação visual, papelaria e impressos promocionais para comércios, empresas, eventos e quem está começando agora.</p>
+          <div class="about__pix">
+            <div>
+              <span class="label">Pague com PIX</span>
+              <b>(11) 98329-4003</b>
+              <small>Wagner Pailer</small>
+            </div>
+            <button type="button" class="btn btn--dark btn--sm" data-copy="11983294003">Copiar chave</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Dúvidas ===== -->
+    <section class="sec sec--paper2" id="duvidas">
+      <div class="wrap faq">
+        <header class="sec__head">
+          <p class="eyebrow eyebrow--dark"><span class="dot"></span> Dúvidas</p>
+          <h2>Perguntas frequentes</h2>
+        </header>
+        <div class="faq__list">
+          <details>
+            <summary>Preciso ter a arte pronta?</summary>
+            <p>Não. Se você já tiver a arte, é só mandar pelo WhatsApp (PDF, PNG ou JPG em boa resolução). Se não tiver, a gente cria pra você. Basta marcar essa opção no pedido.</p>
+          </details>
+          <details>
+            <summary>Como recebo o valor do meu pedido?</summary>
+            <p>Ao finalizar, seu pedido é enviado pro nosso WhatsApp com todos os detalhes. Respondemos com o orçamento certinho para as opções que você escolheu.</p>
+          </details>
+          <details>
+            <summary>Quais as formas de pagamento?</summary>
+            <p>Aceitamos PIX pela chave (11) 98329-4003, em nome de Wagner Pailer. Outras formas podem ser combinadas no atendimento.</p>
+          </details>
+          <details>
+            <summary>Fazem tamanhos e quantidades personalizados?</summary>
+            <p>Sim! Escolha “Personalizado” nas opções ou escreva o que precisa no campo de observações do produto.</p>
+          </details>
+          <details>
+            <summary>Qual o prazo de produção?</summary>
+            <p>Depende do produto e da quantidade. Informamos o prazo junto com o orçamento. Se tiver urgência, avise no pedido.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA final ===== -->
+    <section class="cta">
+      <div class="wrap cta__in">
+        <svg class="cta__mark" aria-hidden="true"><use href="#mark"/></svg>
+        <h2>Bora tirar sua ideia do papel? <span>Ou melhor, colocar nele.</span></h2>
+        <a href="https://wa.me/5511983294003?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20WPrint%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" class="btn btn--wa">
+          <svg class="ic"><use href="#i-wa"/></svg> Chamar no WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__in">
+      <a href="#inicio" class="logo logo--light" aria-label="WPrint Artes Gráficas">
+        <svg class="logo__mark"><use href="#mark"/></svg>
+        <span class="logo__txt"><b>print</b><i></i><small>Artes Gráficas</small></span>
+      </a>
+      <div class="footer__cols">
+        <div>
+          <h4>Contato</h4>
+          <a href="https://wa.me/5511983294003" target="_blank" rel="noopener">WhatsApp (11) 98329-4003</a>
+          <span>Wagner Pailer</span>
+        </div>
+        <div>
+          <h4>Navegue</h4>
+          <a href="#produtos">Produtos</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#duvidas">Dúvidas</a>
+        </div>
+      </div>
+      <p class="footer__copy">© <span data-year></span> WPrint Artes Gráficas. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Barra fixa (mobile) -->
+  <div class="dock" data-dock>
+    <a class="dock__wa" href="https://wa.me/5511983294003" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg class="ic"><use href="#i-wa"/></svg>
+    </a>
+    <button type="button" class="dock__cart" data-open-cart>
+      <svg class="ic"><use href="#i-bag"/></svg>
+      <span data-dock-label>Seu pedido está vazio</span>
+      <b class="dock__n" data-cart-count hidden>0</b>
+    </button>
+  </div>
+
+  <!-- ===== Produto (modal / bottom sheet) ===== -->
+  <dialog class="sheet" data-product-dialog aria-labelledby="pd-title">
+    <form method="dialog" class="sheet__in" data-product-form>
+      <button class="sheet__x" value="cancel" aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
+      <div class="pd__art" data-pd-art></div>
+      <div class="pd__body">
+        <p class="pd__cat" data-pd-cat></p>
+        <h3 id="pd-title" data-pd-title></h3>
+        <p class="pd__desc" data-pd-desc></p>
+        <div class="pd__opts" data-pd-opts></div>
+        <label class="field">
+          <span>Observações <small>(opcional)</small></span>
+          <textarea rows="2" name="obs" placeholder="Ex.: medida especial, cores, texto, prazo…"></textarea>
+        </label>
+      </div>
+      <div class="sheet__foot">
+        <button type="button" class="btn btn--light-dark" data-pd-now>
+          <svg class="ic"><use href="#i-wa"/></svg> Pedir só este
+        </button>
+        <button type="submit" class="btn btn--primary" value="add" data-pd-add>
+          <svg class="ic"><use href="#i-plus"/></svg> Adicionar ao pedido
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ===== Pedido (gaveta) ===== -->
+  <dialog class="drawer" data-cart-dialog aria-labelledby="cart-title">
+    <div class="drawer__in">
+      <header class="drawer__head">
+        <h3 id="cart-title">Seu pedido</h3>
+        <button class="sheet__x sheet__x--static" type="button" data-close-cart aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
+      </header>
+      <div class="drawer__body">
+        <ul class="cartlist" data-cart-list></ul>
+        <div class="cartempty" data-cart-empty>
+          <svg><use href="#mark"/></svg>
+          <p>Seu pedido está vazio.</p>
+          <button type="button" class="btn btn--dark btn--sm" data-close-cart data-goto="#produtos">Ver produtos</button>
+        </div>
+        <form class="checkout" data-checkout hidden>
+          <label class="field">
+            <span>Seu nome</span>
+            <input name="nome" autocomplete="name" placeholder="Como podemos te chamar?" required>
+          </label>
+          <fieldset class="field">
+            <span>Arte</span>
+            <div class="seg">
+              <label><input type="radio" name="arte" value="Já tenho a arte pronta" checked><span>Já tenho a arte</span></label>
+              <label><input type="radio" name="arte" value="Preciso da criação da arte"><span>Preciso de criação</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <span>Entrega</span>
+            <div class="seg">
+              <label><input type="radio" name="entrega" value="Retirar na gráfica" checked><span>Vou retirar</span></label>
+              <label><input type="radio" name="entrega" value="Combinar entrega"><span>Combinar entrega</span></label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <footer class="drawer__foot" data-cart-foot hidden>
+        <p class="drawer__note">O valor é confirmado pelo WhatsApp de acordo com as opções escolhidas.</p>
+        <button type="button" class="btn btn--wa btn--block" data-send>
+          <svg class="ic"><use href="#i-wa"/></svg> Finalizar pelo WhatsApp
+        </button>
+      </footer>
+    </div>
+  </dialog>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
