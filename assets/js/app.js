@@ -174,7 +174,13 @@ const TAXA_ARTE = { padrao: 50, 'folheto-pizzaria': 90, calendario: 90, convite:
 const taxaArte = (p) => TAXA_ARTE[p.id] ?? TAXA_ARTE.padrao;
 const reais = (v) => `R$ ${v}`;
 
-/* ---------- Fotos dos produtos (assets/img/produtos/<id>.webp) ---------- */
+/* ---------- Fotos dos produtos ---------- */
+// <id>.webp = horizontal (catálogo) · <id>-v.webp = vertical (galeria da página do produto)
+const VERTICAIS = new Set([]);
+const fotos = (p) => [
+  ...(VERTICAIS.has(p.id) ? [{ src: `assets/img/produtos/${p.id}-v.webp`, w: 880, h: 1100 }] : []),
+  { src: `assets/img/produtos/${p.id}.webp`, w: 1200, h: 900 },
+];
 const foto = (p) => `<img src="assets/img/produtos/${p.id}.webp" alt="${p.nome}" width="1200" height="900" loading="lazy" decoding="async">`;
 
 /* ---------- Utilidades ---------- */
@@ -213,13 +219,10 @@ $('[data-search]').addEventListener('input', (e) => { busca = e.target.value.tri
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const textoBusca = (p) => norm([p.nome, p.desc, ...p.specs, ...p.opcoes.flatMap((o) => o.valores)].join(' '));
 
-function render() {
-  const lista = PRODUTOS.filter((p) =>
-    (filtro === 'todos' || p.cat === filtro) &&
-    (!busca || textoBusca(p).includes(norm(busca)))
-  );
-  grid.innerHTML = lista.map((p, i) => `
-    <button class="card" type="button" data-id="${p.id}" style="--i:${i}">
+const urlProduto = (p) => `#/produto/${p.id}`;
+
+const cardHTML = (p, i) => `
+    <a class="card" href="${urlProduto(p)}" data-id="${p.id}" style="--i:${i}">
       ${p.tag ? `<span class="card__tag">${p.tag}</span>` : ''}
       <div class="card__art">${foto(p)}</div>
       <div class="card__body">
@@ -228,7 +231,14 @@ function render() {
         <span class="card__desc">${p.desc}</span>
         <span class="card__go">Personalizar <svg class="ic"><use href="#i-arrow"/></svg></span>
       </div>
-    </button>`).join('') + (lista.length ? `
+    </a>`;
+
+function render() {
+  const lista = PRODUTOS.filter((p) =>
+    (filtro === 'todos' || p.cat === filtro) &&
+    (!busca || textoBusca(p).includes(norm(busca)))
+  );
+  grid.innerHTML = lista.map(cardHTML).join('') + (lista.length ? `
     <a class="card card--custom" style="--i:${lista.length}" target="_blank" rel="noopener"
        href="${waLink(`${saudacao()}, Wagner! Vim pelo site da WPrint e preciso de um material que não encontrei no catálogo. Pode me ajudar?`)}">
       <svg class="card--custom__mark" aria-hidden="true"><use href="#mark"/></svg>
@@ -253,24 +263,46 @@ function ajustarCustom() {
   c.classList.toggle('is-wide', span > 1);
 }
 addEventListener('resize', ajustarCustom);
-grid.addEventListener('click', (e) => {
-  const c = e.target.closest('[data-id]');
-  if (c) abrirProduto(c.dataset.id);
-});
 
-/* ---------- Produto ---------- */
-const pd = $('[data-product-dialog]');
+/* ---------- Página do produto ---------- */
+const home = $('[data-home]');
+const pagina = $('[data-page]');
 const pdForm = $('[data-product-form]');
+
+// Pinta o fundo da moldura com a cor do canto da foto, para a foto "sumir" no fundo.
+function fundoDaFoto(img) {
+  try {
+    const c = document.createElement('canvas');
+    c.width = c.height = 1;
+    c.getContext('2d').drawImage(img, 4, 4, 1, 1, 0, 0, 1, 1);
+    const [r, g, b] = c.getContext('2d').getImageData(0, 0, 1, 1).data;
+    img.parentElement.style.background = `rgb(${r} ${g} ${b})`;
+  } catch {}
+}
+
+function mostrarFoto(f) {
+  const box = $('[data-pd-art]');
+  box.innerHTML = `<img src="${f.src}" alt="${esc(atual.nome)}" width="${f.w}" height="${f.h}" decoding="async">`;
+  const img = box.firstChild;
+  img.complete ? fundoDaFoto(img) : img.addEventListener('load', () => fundoDaFoto(img), { once: true });
+  $$('[data-pd-thumbs] button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.src === f.src));
+}
 
 function abrirProduto(id) {
   atual = PRODUTOS.find((p) => p.id === id);
-  if (!atual) return;
+  if (!atual) return false;
   pdForm.reset();
-  $('[data-pd-art]').innerHTML = foto(atual);
-  $('[data-pd-cat]').textContent = nomeCat(atual.cat);
+  document.title = `${atual.nome} — WPrint Artes Gráficas`;
+  $$('[data-pd-cat]').forEach((el) => { el.textContent = nomeCat(atual.cat); });
   $('[data-pd-title]').textContent = atual.nome;
   $('[data-pd-desc]').textContent = atual.desc;
   $('[data-pd-specs]').innerHTML = atual.specs.map((s) => `<li>${s}</li>`).join('');
+
+  const lista = fotos(atual);
+  $('[data-pd-thumbs]').innerHTML = lista.length > 1 ? lista.map((f, i) => `
+    <button type="button" data-src="${f.src}" aria-label="Foto ${i + 1}"><img src="${f.src}" alt="" loading="lazy"></button>`).join('') : '';
+  mostrarFoto(lista[0]);
+
   $('[data-pd-opts]').innerHTML = atual.opcoes.map((o, oi) => `
     <fieldset class="field">
       <span>${o.nome}</span>
@@ -287,9 +319,25 @@ function abrirProduto(id) {
       </div>
       <small class="field__hint">Criação com até 2 alterações incluídas.</small>
     </fieldset>`;
-  pd.showModal();
-  pd.querySelector('.sheet__in').scrollTop = 0;
+
+  // Anterior / próximo (em loop) e sugestões da mesma categoria
+  const i = PRODUTOS.indexOf(atual);
+  const ant = PRODUTOS[(i - 1 + PRODUTOS.length) % PRODUTOS.length];
+  const prox = PRODUTOS[(i + 1) % PRODUTOS.length];
+  for (const [sel, p] of [['[data-pd-prev]', ant], ['[data-pd-next]', prox]]) {
+    $(sel).href = urlProduto(p);
+    $(`${sel} b`).textContent = p.nome;
+  }
+  const outros = PRODUTOS.filter((p) => p !== atual);
+  const mais = [...outros.filter((p) => p.cat === atual.cat), ...outros.filter((p) => p.cat !== atual.cat)].slice(0, 4);
+  $('[data-pd-more]').innerHTML = mais.map(cardHTML).join('');
+  return true;
 }
+
+$('[data-pd-thumbs]').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-src]');
+  if (b) mostrarFoto(fotos(atual).find((f) => f.src === b.dataset.src));
+});
 
 function lerProduto() {
   const fd = new FormData(pdForm);
@@ -308,18 +356,40 @@ const textoArte = (it) => it.taxaArte
   : 'Já tenho a arte';
 
 pdForm.addEventListener('submit', (e) => {
-  if (e.submitter?.value !== 'add') return;
   e.preventDefault();
   pedido.push(lerProduto());
   salvar();
-  pd.close();
   toast(`${atual.nome} adicionado ao pedido`);
   $$('[data-cart-count]').forEach((n) => { n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump'); });
+  pdForm.reset();
 });
 $('[data-pd-now]').addEventListener('click', () => {
   abrirWhats(mensagem([lerProduto()], {}));
 });
-pd.addEventListener('click', (e) => { if (e.target === pd) pd.close(); }); // clique fora fecha
+
+/* ---------- Navegação (#/produto/<id> abre a página; o resto é a home) ---------- */
+let naPagina = false;
+function rotear() {
+  const m = location.hash.match(/^#\/produto\/([\w-]+)/);
+  if (m && abrirProduto(m[1])) {
+    home.hidden = true;
+    pagina.hidden = false;
+    document.body.classList.add('is-pp');
+    scrollTo({ top: 0, behavior: naPagina ? 'smooth' : 'instant' });
+    naPagina = true;
+    return;
+  }
+  const voltando = naPagina;
+  naPagina = false;
+  home.hidden = false;
+  pagina.hidden = true;
+  document.body.classList.remove('is-pp');
+  document.title = 'WPrint Artes Gráficas — Gráfica rápida';
+  // vindo da página do produto, a âncora só existe depois de mostrar a home
+  const alvo = location.hash.length > 1 && document.querySelector(location.hash);
+  if (voltando || alvo) (alvo || home).scrollIntoView({ behavior: 'instant' });
+}
+addEventListener('hashchange', rotear);
 
 /* ---------- Pedido ---------- */
 const cart = $('[data-cart-dialog]');
@@ -444,3 +514,4 @@ $('[data-year]').textContent = new Date().getFullYear();
 render();
 atualizarContador();
 renderPedido();
+rotear();

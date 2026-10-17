@@ -58,7 +58,7 @@
     </div>
   </header>
 
-  <main>
+  <main data-home>
     <!-- ===== Hero ===== -->
     <section class="hero" id="inicio">
       <div class="hero__glow" aria-hidden="true"></div>
@@ -232,12 +232,60 @@
     <section class="cta">
       <div class="wrap cta__in">
         <svg class="cta__mark" aria-hidden="true"><use href="#mark"/></svg>
-        <h2>Bora tirar sua ideia do papel? <span>Ou melhor, colocar nele.</span></h2>
+        <h2>Bora tirar sua ideia do papel? <span>Ou melhor, colocar no papel!</span></h2>
         <a href="https://wa.me/5511983294003?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20WPrint%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" class="btn btn--wa">
           <svg class="ic"><use href="#i-wa"/></svg> Chamar no WhatsApp
         </a>
       </div>
     </section>
+  </main>
+
+  <!-- ===== Página do produto (#/produto/<id>) ===== -->
+  <main class="pp" data-page hidden>
+    <div class="wrap">
+      <nav class="pp__crumbs" aria-label="Você está em">
+        <a href="#produtos" class="pp__back"><svg class="ic"><use href="#i-arrow"/></svg> Produtos</a>
+        <span aria-hidden="true">/</span>
+        <span data-pd-cat></span>
+      </nav>
+
+      <div class="pp__grid">
+        <div class="pp__gallery">
+          <div class="pp__main" data-pd-art></div>
+          <div class="pp__thumbs" data-pd-thumbs></div>
+        </div>
+
+        <form class="pp__info" data-product-form>
+          <p class="pd__cat" data-pd-cat></p>
+          <h1 class="pp__title" data-pd-title></h1>
+          <p class="pd__desc" data-pd-desc></p>
+          <ul class="pd__specs" data-pd-specs></ul>
+          <div class="pd__opts" data-pd-opts></div>
+          <label class="field">
+            <span>Observações <small>(opcional)</small></span>
+            <textarea rows="3" name="obs" placeholder="Ex.: medida especial, cores, texto, prazo…"></textarea>
+          </label>
+          <div class="pp__actions">
+            <button type="button" class="btn btn--light-dark" data-pd-now>
+              <svg class="ic"><use href="#i-wa"/></svg> Pedir só este
+            </button>
+            <button type="submit" class="btn btn--primary" data-pd-add>
+              <svg class="ic"><use href="#i-plus"/></svg> Adicionar ao pedido
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <nav class="pp__nav" aria-label="Outros produtos">
+        <a data-pd-prev><small>Anterior</small><b></b></a>
+        <a data-pd-next><small>Próximo</small><b></b></a>
+      </nav>
+
+      <section class="pp__more">
+        <h2>Veja também</h2>
+        <div class="grid" data-pd-more></div>
+      </section>
+    </div>
   </main>
 
   <footer class="footer">
@@ -274,33 +322,6 @@
       <b class="dock__n" data-cart-count hidden>0</b>
     </button>
   </div>
-
-  <!-- ===== Produto (modal / bottom sheet) ===== -->
-  <dialog class="sheet" data-product-dialog aria-labelledby="pd-title">
-    <form method="dialog" class="sheet__in" data-product-form>
-      <button class="sheet__x" value="cancel" aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
-      <div class="pd__art" data-pd-art></div>
-      <div class="pd__body">
-        <p class="pd__cat" data-pd-cat></p>
-        <h3 id="pd-title" data-pd-title></h3>
-        <p class="pd__desc" data-pd-desc></p>
-        <ul class="pd__specs" data-pd-specs></ul>
-        <div class="pd__opts" data-pd-opts></div>
-        <label class="field">
-          <span>Observações <small>(opcional)</small></span>
-          <textarea rows="2" name="obs" placeholder="Ex.: medida especial, cores, texto, prazo…"></textarea>
-        </label>
-      </div>
-      <div class="sheet__foot">
-        <button type="button" class="btn btn--light-dark" data-pd-now>
-          <svg class="ic"><use href="#i-wa"/></svg> Pedir só este
-        </button>
-        <button type="submit" class="btn btn--primary" value="add" data-pd-add>
-          <svg class="ic"><use href="#i-plus"/></svg> Adicionar ao pedido
-        </button>
-      </div>
-    </form>
-  </dialog>
 
   <!-- ===== Pedido (gaveta) ===== -->
   <dialog class="drawer" data-cart-dialog aria-labelledby="cart-title">
