@@ -176,7 +176,7 @@ const reais = (v) => `R$ ${v}`;
 
 /* ---------- Fotos dos produtos ---------- */
 // <id>.webp = horizontal (catálogo) · <id>-v.webp = vertical (galeria da página do produto)
-const VERTICAIS = new Set([]);
+const VERTICAIS = new Set(PRODUTOS.map((p) => p.id));
 const fotos = (p) => [
   ...(VERTICAIS.has(p.id) ? [{ src: `assets/img/produtos/${p.id}-v.webp`, w: 880, h: 1100 }] : []),
   { src: `assets/img/produtos/${p.id}.webp`, w: 1200, h: 900 },
@@ -510,6 +510,51 @@ addEventListener('scroll', () => {
 }, { passive: true });
 
 $('[data-year]').textContent = new Date().getFullYear();
+
+/* ---------- Leque de cores interativo (hero) ---------- */
+const arteHero = $('.hero__art');
+const leque = $('.fan', arteHero);
+const laminas = $$('span', leque);
+const angulos = laminas.map((s) => parseFloat(s.style.getPropertyValue('--r')));
+
+// Só começa a reagir depois da animação de abertura
+laminas.at(-1).addEventListener('animationend', () => leque.classList.add('is-ready'), { once: true });
+$('.hero__card', arteHero).addEventListener('animationend', () => arteHero.classList.add('is-live'), { once: true });
+
+function mexerLeque(e) {
+  if (!leque.classList.contains('is-ready')) return;
+  const box = arteHero.getBoundingClientRect();
+  const nx = ((e.clientX - box.left) / box.width) * 2 - 1;   // -1 … 1
+  const ny = ((e.clientY - box.top) / box.height) * 2 - 1;
+  leque.style.setProperty('--tilt', `${nx * 10}deg`);
+  leque.style.setProperty('--spread', (1.12 - ny * 0.1).toFixed(3));
+  arteHero.style.setProperty('--cx', `${nx * 10}px`);
+  arteHero.style.setProperty('--cy', `${ny * 8}px`);
+
+  // Ângulo do cursor em relação ao pivô do leque → lâmina mais próxima sobe
+  const piv = leque.getBoundingClientRect();
+  const ang = Math.atan2(e.clientX - piv.left, piv.top - e.clientY) * 180 / Math.PI;
+  const spread = parseFloat(leque.style.getPropertyValue('--spread'));
+  const alvo = angulos.reduce((m, r, i) =>
+    Math.abs(r * spread + nx * 10 - ang) < Math.abs(angulos[m] * spread + nx * 10 - ang) ? i : m, 0);
+  laminas.forEach((s, i) => {
+    const d = Math.abs(i - alvo);
+    s.style.setProperty('--lift', d === 0 ? '-34px' : d === 1 ? '-12px' : '0px');
+    s.classList.toggle('is-on', d === 0);
+  });
+}
+
+function soltarLeque() {
+  for (const p of ['--tilt', '--spread']) leque.style.removeProperty(p);
+  for (const p of ['--cx', '--cy']) arteHero.style.removeProperty(p);
+  laminas.forEach((s) => { s.style.removeProperty('--lift'); s.classList.remove('is-on'); });
+}
+
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  arteHero.addEventListener('pointermove', mexerLeque);
+  arteHero.addEventListener('pointerleave', soltarLeque);
+  arteHero.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') soltarLeque(); });
+}
 
 render();
 atualizarContador();

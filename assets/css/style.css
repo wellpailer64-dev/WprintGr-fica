@@ -196,6 +196,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .fan span::after { content: ""; position: absolute; left: 50%; bottom: 14px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: rgba(255,255,255,.5); }
 @keyframes fanOpen { to { transform: rotate(var(--r)); } }
+/* Depois de abrir, o leque responde ao mouse/dedo: inclina, abre mais e a lâmina sob o cursor sobe */
+.fan.is-ready span {
+  animation: none;
+  transform: rotate(calc(var(--r) * var(--spread, 1) + var(--tilt, 0deg))) translateY(var(--lift, 0px));
+  transition: transform .55s var(--ease), filter .3s;
+}
+.fan.is-ready span.is-on { filter: brightness(1.12) saturate(1.1); z-index: 2; }
+.hero__art { touch-action: pan-y; }
+.hero__card { z-index: 3; }
+.hero__art.is-live .hero__card { animation: none; opacity: 1; transition: transform .6s var(--ease); transform: rotate(-7deg) translate(var(--cx, 0px), var(--cy, 0px)); }
 .hero__card {
   position: absolute; right: 2%; bottom: 8px; width: 62%; aspect-ratio: 1.7;
   background: var(--paper); color: var(--ink); border-radius: 14px;
