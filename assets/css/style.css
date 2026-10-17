@@ -59,11 +59,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hide-sm { display: none !important; }
 
 /* ---------- Logo ---------- */
-.mk { mix-blend-mode: multiply; }
+/* O símbolo vem de <use>, então só variáveis herdadas chegam até os traços. */
+.mk { mix-blend-mode: var(--mk-blend, multiply); }
 .mk-c { stroke: var(--c); }
 .mk-m { stroke: var(--m); }
 .mk-y { stroke: var(--y); }
-.mk-k { stroke: var(--ink); }
+.mk-k { stroke: var(--mk-k, var(--ink)); }
+/* Versão para fundo escuro: traço K vira "papel" e sem multiply */
+.logo--light, .card--custom__mark, .cta__mark { --mk-blend: normal; --mk-k: var(--paper); }
 
 .logo { display: inline-flex; align-items: center; gap: 2px; text-decoration: none; color: var(--ink); }
 .logo__mark { width: 46px; height: 31px; }
@@ -73,8 +76,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .logo__txt i { display: none; }
 .logo__txt small { font-family: var(--font-display); font-weight: 500; font-size: 7.5px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
 .logo--light { color: var(--paper); }
-.logo--light .mk { mix-blend-mode: normal; }
-.logo--light .mk-k { stroke: var(--paper); }
 .logo--light small { color: var(--muted-2); }
 
 /* ---------- Botões ---------- */
@@ -237,11 +238,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .sec__sub { margin-top: 12px; color: var(--muted); max-width: 40em; }
 
 /* Barra de filtros */
-.toolbar { display: grid; gap: 14px; margin-bottom: 22px; position: sticky; top: 64px; z-index: 5; padding: 10px 0; background: linear-gradient(var(--paper) 80%, transparent); }
+.toolbar { display: grid; gap: 14px; margin-bottom: 22px; padding: 10px 0; }
 .search { display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 18px; background: var(--white); border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--line); color: var(--muted); transition: box-shadow .2s; }
 .search:focus-within { box-shadow: inset 0 0 0 2px var(--ink); }
 .search input { flex: 1; border: 0; outline: 0; background: transparent; font: inherit; color: var(--ink); min-width: 0; }
-.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter); scroll-snap-type: x proximity; }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter); scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); }
 .chips::-webkit-scrollbar { display: none; }
 .chip {
   flex: none; height: 40px; padding: 0 16px; border-radius: 999px; border: 0;
@@ -279,6 +280,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .card__go .ic { width: 16px; height: 16px; transition: transform .3s var(--ease); }
 .card:hover .card__go .ic { transform: translateX(4px); }
 .card__tag { position: absolute; top: 10px; left: 10px; padding: 5px 9px; border-radius: 999px; background: var(--ink); color: var(--paper); font: 600 10px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
+/* Card "sob medida" — fecha a grade (ocupa o que sobra da última linha) */
+.card--custom {
+  text-decoration: none; color: var(--paper); background: var(--ink);
+  padding: 20px; gap: 10px; justify-content: center; align-items: flex-start;
+}
+.card--custom .card__name { font-size: 20px; }
+.card--custom__mark { width: 54px; height: 36px; }
+.card--custom__body { display: grid; gap: 6px; }
+.card--custom__txt { font-size: 14px; color: var(--muted-2); }
+.card--custom .btn { margin-top: 6px; }
 .empty { padding: 40px 0; text-align: center; color: var(--muted); }
 .empty a { color: var(--m); font-weight: 600; }
 
@@ -344,8 +355,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .cta::before { content: ""; position: absolute; inset: auto -20% -60% -20%; height: 100%; background: radial-gradient(50% 50% at 50% 50%, rgba(229,25,122,.35), transparent 70%); }
 .cta__in { position: relative; display: grid; justify-items: center; text-align: center; gap: 24px; }
 .cta__mark { width: 84px; height: 56px; }
-.cta__mark .mk, .footer .mk { mix-blend-mode: normal; }
-.cta__mark .mk-k { stroke: var(--paper); }
 .cta h2 span { display: block; color: var(--muted-2); font-weight: 600; font-size: .6em; letter-spacing: -.02em; margin-top: 10px; }
 
 /* ---------- Rodapé ---------- */
@@ -406,6 +415,11 @@ dialog[open]::backdrop { animation: fade .3s ease; }
 .pd__cat { font: 600 11px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--m); }
 .pd__body h3 { font-size: 30px; font-weight: 800; letter-spacing: -.035em; margin: 8px 0 8px; }
 .pd__desc { color: var(--muted); font-size: 15px; }
+.pd__specs { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pd__specs li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); font-size: 12.5px; font-weight: 500; }
+.pd__specs li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--m); }
+.pd__specs li:nth-child(3n+1)::before { background: var(--c); }
+.pd__specs li:nth-child(3n+2)::before { background: var(--y); }
 .pd__opts { display: grid; gap: 18px; margin: 22px 0 18px; }
 
 .field { display: grid; gap: 8px; border: 0; margin: 0; padding: 0; min-width: 0; }
@@ -456,7 +470,7 @@ dialog[open]::backdrop { animation: fade .3s ease; }
 .cartlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .citem { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: start; padding: 10px; background: var(--white); border-radius: 16px; box-shadow: var(--shadow); animation: rise .4s var(--ease); }
 .citem__art { width: 64px; height: 64px; border-radius: 12px; overflow: hidden; background: var(--photo); }
-.citem__art img { width: 100%; height: 100%; object-fit: cover; }
+.citem__art img { width: 100%; height: 100%; object-fit: contain; }
 .citem b { font: 700 16px/1.2 var(--font-display); letter-spacing: -.01em; display: block; margin-top: 2px; }
 .citem ul { list-style: none; margin: 4px 0 0; padding: 0; font-size: 13px; color: var(--muted); }
 .citem__rm { width: 36px; height: 36px; border-radius: 50%; border: 0; background: transparent; color: var(--muted); display: grid; place-items: center; }
@@ -522,10 +536,14 @@ dialog[open]::backdrop { animation: fade .3s ease; }
   .sec__head { margin-bottom: 40px; display: grid; grid-template-columns: 1fr 1fr; align-items: end; column-gap: 40px; }
   .sec__head .eyebrow { grid-column: 1 / -1; justify-self: start; }
   .sec__sub { margin: 0; justify-self: end; text-align: right; max-width: 28em; }
-  .toolbar { grid-template-columns: 320px 1fr; align-items: center; top: 76px; }
+  .toolbar { grid-template-columns: 320px 1fr; align-items: center; position: sticky; top: 76px; z-index: 5; background: linear-gradient(var(--paper) 80%, transparent); }
   .chips { margin: 0; padding: 2px; flex-wrap: wrap; justify-content: flex-end; overflow: visible; }
 
   .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .card--custom.is-wide { flex-direction: row; align-items: center; gap: 24px; padding: 28px 32px; }
+  .card--custom.is-wide .card--custom__body { flex: 1; }
+  .card--custom .card__name { font-size: 24px; }
+  .card--custom .btn { margin: 0; flex: none; }
   .steps { grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .steps li { padding: 32px 28px 36px; min-height: 260px; }
   .steps h3 { font-size: 26px; margin-top: 60px; }
@@ -545,7 +563,8 @@ dialog[open]::backdrop { animation: fade .3s ease; }
   @keyframes pop { from { transform: scale(.96); opacity: 0; } }
   .sheet__in { border-radius: var(--r-lg); display: grid; grid-template-columns: 1fr 1fr; max-height: min(720px, 90vh); overflow: hidden; }
   .pd__art { aspect-ratio: auto; max-height: none; height: 100%; grid-row: 1 / 3; }
-  .pd__art img { object-fit: cover; }
+  .pd__art { display: grid; place-items: center; }
+  .pd__art img { height: auto; object-fit: contain; }
   .pd__body { overflow: auto; padding: 36px 32px 8px; }
   .sheet__foot { grid-column: 2; padding: 16px 32px 28px; }
   .drawer { inset: 0 0 0 auto; height: 100%; width: 440px; }

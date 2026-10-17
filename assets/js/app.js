@@ -12,117 +12,157 @@ const CATEGORIAS = [
   { id: 'eventos', nome: 'Eventos' },
 ];
 
+// Especificações baseadas no catálogo de mercado (formatos, papéis e acabamentos usuais).
+// "Outra" / "Personalizado": o cliente detalha no campo de observações.
 const PRODUTOS = [
   {
     id: 'banner', nome: 'Banners', cat: 'visual', tag: 'Mais pedido',
-    desc: 'Banner em lona com impressão digital em alta resolução. Ideal para fachadas, eventos e pontos de venda.',
+    desc: 'Banner com impressão digital colorida em alta resolução. Ideal para fachadas, eventos, vitrines e pontos de venda.',
+    specs: ['Lona 340g ou tecido', 'Impressão colorida (4x0)', 'Uso interno e externo'],
     opcoes: [
-      { nome: 'Tamanho', valores: ['60 × 90 cm', '80 × 120 cm', '90 × 150 cm', '100 × 200 cm', 'Personalizado'] },
-      { nome: 'Acabamento', valores: ['Bastão e cordão', 'Ilhós', 'Sem acabamento'] },
-      { nome: 'Quantidade', valores: ['1', '2', '5', '10', 'Outra'] },
+      { nome: 'Material', valores: ['Lona Brilho 340g', 'Lona Fosca 340g', 'Tecido Poliéster'] },
+      { nome: 'Tamanho', valores: ['40 × 60 cm', '60 × 90 cm', '70 × 100 cm', '80 × 120 cm', '90 × 120 cm', '100 × 150 cm', 'Personalizado'] },
+      { nome: 'Acabamento', valores: ['Bastão e cordão', 'Ilhós', 'Sem acabamento (refile)'] },
+      { nome: 'Quantidade', valores: ['1', '2', '3', '5', '10', 'Outra'] },
     ],
   },
   {
     id: 'placa', nome: 'Placas', cat: 'visual',
-    desc: 'Placas de sinalização e identificação para comércios, obras, imóveis e empresas.',
+    desc: 'Placas rígidas para sinalização, fachadas, imobiliárias, obras e identificação de ambientes.',
+    specs: ['PVC, PS, ACM ou polionda', 'Impressão digital colorida', 'Corte reto ou personalizado'],
     opcoes: [
-      { nome: 'Material', valores: ['PVC', 'PS', 'ACM', 'Não sei, me ajude'] },
-      { nome: 'Tamanho', valores: ['30 × 20 cm', '50 × 30 cm', '100 × 50 cm', 'Personalizado'] },
-      { nome: 'Quantidade', valores: ['1', '2', '5', '10', 'Outra'] },
+      { nome: 'Material', valores: ['PVC 2 mm', 'PVC 3 mm', 'PS 2 mm', 'ACM 3 mm', 'Polionda 4 mm', 'Não sei, me ajude'] },
+      { nome: 'Tamanho', valores: ['30 × 20 cm', '40 × 30 cm', '60 × 40 cm', '97 × 62 cm', '100 × 50 cm', 'Personalizado'] },
+      { nome: 'Acabamento', valores: ['Corte reto', 'Corte personalizado', 'Com furos para fixar', 'Com fita dupla-face'] },
+      { nome: 'Quantidade', valores: ['1', '2', '5', '10', '25', 'Outra'] },
     ],
   },
   {
     id: 'faixa', nome: 'Faixas', cat: 'visual',
-    desc: 'Faixas em lona para promoções, inaugurações, festas e comunicados.',
+    desc: 'Faixas para promoções, inaugurações, festas e comunicados. Vista de longe e fácil de instalar.',
+    specs: ['Lona 340g ou tecido', 'Impressão colorida (4x0)', 'Pronta para pendurar'],
     opcoes: [
-      { nome: 'Tamanho', valores: ['2 × 0,7 m', '3 × 0,7 m', '4 × 1 m', '5 × 1 m', 'Personalizado'] },
-      { nome: 'Acabamento', valores: ['Ilhós', 'Bastão e cordão', 'Sem acabamento'] },
-      { nome: 'Quantidade', valores: ['1', '2', '5', 'Outra'] },
+      { nome: 'Material', valores: ['Lona Brilho 340g', 'Lona Fosca 340g', 'Tecido Poliéster'] },
+      { nome: 'Tamanho', valores: ['200 × 40 cm', '200 × 70 cm', '300 × 70 cm', '300 × 100 cm', '400 × 60 cm', '500 × 100 cm', 'Personalizado'] },
+      { nome: 'Acabamento', valores: ['Bastão, cordão e 4 ilhoses', '4 ilhoses', 'Bastão e cordão'] },
+      { nome: 'Quantidade', valores: ['1', '2', '5', '10', 'Outra'] },
     ],
   },
   {
     id: 'pedestal', nome: 'Pedestal com Banner', cat: 'visual',
-    desc: 'Banner com pedestal (estrutura) pronto para montar em lojas, feiras e recepções.',
+    desc: 'Banner com estrutura própria, pronto para montar em lojas, feiras, recepções e eventos.',
+    specs: ['Estrutura inclusa ou só o refil', 'Lona Brilho 340g', 'Monta em segundos'],
     opcoes: [
-      { nome: 'Modelo', valores: ['X-Banner', 'Roll-up', 'Não sei, me ajude'] },
-      { nome: 'Tamanho', valores: ['60 × 160 cm', '80 × 180 cm', '80 × 200 cm'] },
-      { nome: 'Quantidade', valores: ['1', '2', '3', 'Outra'] },
+      { nome: 'Modelo', valores: ['X-Banner (suporte em X)', 'Roll-up (retrátil)', 'Banner com tripé'] },
+      { nome: 'Tamanho', valores: ['60 × 90 cm (tripé)', '60 × 160 cm', '80 × 180 cm', '80 × 200 cm'] },
+      { nome: 'Item', valores: ['Banner + estrutura', 'Só o banner (refil)'] },
+      { nome: 'Quantidade', valores: ['1', '2', '3', '5', 'Outra'] },
     ],
   },
   {
     id: 'cavalete', nome: 'Cavaletes', cat: 'visual',
-    desc: 'Cavalete de calçada com banner dupla face para chamar atenção na porta do seu negócio.',
+    desc: 'Cavalete de calçada para chamar a atenção de quem passa na porta do seu negócio.',
+    specs: ['Estrutura de metal ou polionda', 'Uma ou duas faces', 'Refil avulso disponível'],
     opcoes: [
+      { nome: 'Modelo', valores: ['Metal com banner (45 × 96 cm)', 'Polionda (60 × 97,5 cm)', 'Personalizado'] },
       { nome: 'Impressão', valores: ['Um lado', 'Dois lados'] },
-      { nome: 'Item', valores: ['Cavalete + banner', 'Só o banner (refil)'] },
-      { nome: 'Quantidade', valores: ['1', '2', '3', 'Outra'] },
+      { nome: 'Item', valores: ['Cavalete completo', 'Só a impressão (refil)'] },
+      { nome: 'Quantidade', valores: ['1', '2', '3', '5', 'Outra'] },
     ],
   },
   {
     id: 'cartao', nome: 'Cartões de Visita', cat: 'papelaria', tag: 'Clássico',
-    desc: 'Cartões de visita em papel couché com impressão colorida. A primeira impressão da sua marca.',
+    desc: 'O cartão certo para a primeira impressão da sua marca, do básico ao premium.',
+    specs: ['Formato padrão 88 × 48 mm', 'Couché 300g a Premium 600g', 'Vários acabamentos'],
     opcoes: [
-      { nome: 'Quantidade', valores: ['100', '250', '500', '1.000', '2.000'] },
-      { nome: 'Impressão', valores: ['Frente', 'Frente e verso'] },
-      { nome: 'Acabamento', valores: ['Sem verniz', 'Verniz total', 'Laminação fosca'] },
+      { nome: 'Papel', valores: ['Couché Fosco 300g', 'Couché Brilho 300g', 'Premium 600g', 'Kraft 280g', 'Reciclato 240g', 'Perolizado 250g'] },
+      { nome: 'Formato', valores: ['88 × 48 mm (padrão)', '85 × 54 mm', '50 × 50 mm (quadrado)', '88 × 98 mm (duplo, com vinco)'] },
+      { nome: 'Impressão', valores: ['Frente (4x0)', 'Frente e verso (4x4)'] },
+      { nome: 'Acabamento', valores: ['Sem enobrecimento', 'Verniz total brilho', 'Laminação fosca', 'Laminação fosca + verniz localizado', 'Soft touch', 'Hot stamping'] },
+      { nome: 'Cantos', valores: ['Retos', 'Arredondados'] },
+      { nome: 'Quantidade', valores: ['100', '250', '500', '1.000', '2.000', '5.000'] },
     ],
   },
   {
     id: 'ima', nome: 'Ímãs de Geladeira', cat: 'promo',
-    desc: 'Ímãs personalizados: o jeito certo de ficar na porta da geladeira do seu cliente.',
+    desc: 'Ímãs personalizados: o jeito certo de ficar na porta da geladeira do seu cliente o ano todo.',
+    specs: ['Manta magnética 0,3 mm', 'Impressão colorida (4x0)', 'Opção com calendário'],
     opcoes: [
-      { nome: 'Tamanho', valores: ['5 × 5 cm', '7 × 5 cm', '9 × 5 cm', 'Personalizado'] },
-      { nome: 'Quantidade', valores: ['100', '250', '500', '1.000', '2.000'] },
+      { nome: 'Modelo', valores: ['Ímã simples', 'Ímã com bloco de calendário'] },
+      { nome: 'Formato', valores: ['50 × 40 mm', '50 × 50 mm', '50 × 80 mm', '74 × 105 mm', 'Personalizado'] },
+      { nome: 'Acabamento', valores: ['Verniz total brilho', 'Sem verniz'] },
+      { nome: 'Corte', valores: ['Reto', 'Personalizado (formato da arte)'] },
+      { nome: 'Quantidade', valores: ['100', '200', '500', '1.000', '2.000', '5.000'] },
     ],
   },
   {
     id: 'folheto-pizzaria', nome: 'Folhetos de Pizzaria', cat: 'promo', tag: 'Delivery',
     desc: 'Cardápios e folhetos para pizzarias, lanchonetes e delivery. Cores vivas que dão fome.',
+    specs: ['Couché brilho ou sulfite', 'Frente ou frente e verso', 'Com ou sem dobra'],
     opcoes: [
-      { nome: 'Tamanho', valores: ['10 × 15 cm', '15 × 21 cm (A5)', '21 × 30 cm (A4)'] },
-      { nome: 'Impressão', valores: ['Frente', 'Frente e verso'] },
-      { nome: 'Quantidade', valores: ['500', '1.000', '2.500', '5.000', '10.000'] },
+      { nome: 'Papel', valores: ['Couché Brilho 90g', 'Couché Brilho 115g', 'Couché Brilho 150g', 'Sulfite 75g'] },
+      { nome: 'Formato', valores: ['10 × 15 cm', '15 × 21 cm (A5)', '20 × 28 cm', '21 × 29,7 cm (A4)'] },
+      { nome: 'Impressão', valores: ['Frente (4x0)', 'Frente e verso (4x4)'] },
+      { nome: 'Dobra', valores: ['Sem dobra', '1 dobra', '2 dobras'] },
+      { nome: 'Quantidade', valores: ['500', '1.000', '2.500', '5.000', '10.000', '20.000'] },
     ],
   },
   {
     id: 'flyer', nome: 'Flyers', cat: 'promo',
     desc: 'Flyers para divulgar promoções, eventos e serviços. Distribuição rápida, resultado na hora.',
+    specs: ['Couché, sulfite, reciclato ou kraft', 'Do A6 ao A4', 'Opção com verniz'],
     opcoes: [
-      { nome: 'Tamanho', valores: ['10 × 15 cm', '15 × 21 cm (A5)', '21 × 30 cm (A4)'] },
-      { nome: 'Impressão', valores: ['Frente', 'Frente e verso'] },
-      { nome: 'Quantidade', valores: ['500', '1.000', '2.500', '5.000', '10.000'] },
+      { nome: 'Papel', valores: ['Couché Brilho 115g', 'Couché Brilho 150g', 'Couché Brilho 250g', 'Couché Fosco 150g', 'Sulfite 90g', 'Reciclato 90g', 'Kraft 125g'] },
+      { nome: 'Formato', valores: ['10 × 15 cm (A6)', '10 × 21 cm', '15 × 21 cm (A5)', '21 × 29,7 cm (A4)'] },
+      { nome: 'Impressão', valores: ['Frente (4x0)', 'Frente e verso (4x4)'] },
+      { nome: 'Acabamento', valores: ['Sem enobrecimento', 'Verniz total brilho', 'Verniz localizado'] },
+      { nome: 'Quantidade', valores: ['100', '500', '1.000', '2.500', '5.000', '10.000'] },
     ],
   },
   {
-    id: 'nota', nome: 'Notas Fiscais', cat: 'papelaria',
-    desc: 'Blocos de notas fiscais, pedidos e recibos numerados, com vias em papel carbonado.',
+    id: 'nota', nome: 'Notas Fiscais e Talões', cat: 'papelaria',
+    desc: 'Blocos de notas, pedidos, recibos, orçamentos e comandas, numerados e com vias autocopiativas.',
+    specs: ['1, 2 ou 3 vias', 'Numeração e serrilha', 'Blocos de 50 ou 100 folhas'],
     opcoes: [
-      { nome: 'Tipo', valores: ['Nota fiscal', 'Pedido', 'Recibo', 'Orçamento'] },
-      { nome: 'Vias', valores: ['1 via', '2 vias', '3 vias'] },
-      { nome: 'Blocos', valores: ['5', '10', '20', '50'] },
+      { nome: 'Tipo', valores: ['Nota fiscal', 'Pedido', 'Recibo', 'Orçamento', 'Comanda'] },
+      { nome: 'Vias', valores: ['1 via (100 folhas)', '2 vias autocopiativas (50 × 2)', '3 vias autocopiativas (50 × 3)'] },
+      { nome: 'Formato', valores: ['10,5 × 14,8 cm (A6)', '14,8 × 21 cm (A5)', '10 × 21 cm (comanda)', '21 × 29,7 cm (A4)'] },
+      { nome: 'Impressão', valores: ['1 cor', 'Colorida'] },
+      { nome: 'Acabamento', valores: ['Numerado + serrilha', 'Só numerado', 'Sem numeração'] },
+      { nome: 'Blocos', valores: ['1', '5', '10', '20', '50', 'Outra'] },
     ],
   },
   {
     id: 'envelope', nome: 'Envelopes em Geral', cat: 'papelaria',
-    desc: 'Envelopes personalizados com a sua marca: carta, ofício, saco e outros formatos.',
+    desc: 'Envelopes personalizados com a sua marca, para correspondência, documentos e entregas.',
+    specs: ['Sulfite, kraft ou reciclato', 'Impressão 1 cor ou colorida', 'Do carta ao saco A3'],
     opcoes: [
-      { nome: 'Modelo', valores: ['Carta', 'Ofício', 'Saco A4', 'Saco A3', 'Outro'] },
-      { nome: 'Quantidade', valores: ['100', '250', '500', '1.000'] },
+      { nome: 'Modelo', valores: ['Comercial (11,4 × 16,2 cm)', 'Ofício (11,5 × 23 cm)', 'Saco (20 × 28 cm)', 'Saco A4 (24 × 34 cm)', 'Saco A3 (32 × 40 cm)', 'Outro'] },
+      { nome: 'Papel', valores: ['Sulfite 80g', 'Sulfite 90g', 'Kraft 80g', 'Kraft 125g', 'Reciclato 90g'] },
+      { nome: 'Impressão', valores: ['1 cor (1x0)', 'Colorida frente (4x0)'] },
+      { nome: 'Quantidade', valores: ['100', '250', '500', '1.000', '2.500', '5.000'] },
     ],
   },
   {
     id: 'calendario', nome: 'Calendários de Mesa', cat: 'promo',
     desc: 'Calendário de mesa personalizado: sua marca à vista o ano inteiro. Ótimo brinde de fim de ano.',
+    specs: ['Calendário 2027', 'Couché 250g', 'Vários modelos de base'],
     opcoes: [
-      { nome: 'Modelo', valores: ['12 páginas (1 mês por folha)', '6 páginas (2 meses por folha)'] },
-      { nome: 'Quantidade', valores: ['25', '50', '100', '250', 'Outra'] },
+      { nome: 'Modelo', valores: ['Base rígida com wire-o (15 × 20,5 cm)', 'Pirâmide (16 × 29,4 cm)', 'Porta-cartão', 'Porta-caneta', 'Base em PVC', 'Não sei, me ajude'] },
+      { nome: 'Impressão', valores: ['Frente (4x0)', 'Frente e verso (4x4)'] },
+      { nome: 'Quantidade', valores: ['10', '25', '50', '100', '250', '500'] },
     ],
   },
   {
     id: 'convite', nome: 'Convites de Casamento', cat: 'eventos', tag: 'Especial',
-    desc: 'Convites personalizados para casamento, com papel especial e acabamento caprichado.',
+    desc: 'Convites personalizados para casamento, com papéis especiais e acabamento caprichado.',
+    specs: ['Couché, perolizado ou color plus', 'Com envelope', 'Clássico, moderno ou romântico'],
     opcoes: [
-      { nome: 'Formato', valores: ['Cartão simples', 'Com envelope', 'Cartão + envelope + tag'] },
+      { nome: 'Estilo', valores: ['Clássico', 'Moderno', 'Romântico', 'Especial'] },
+      { nome: 'Formato', valores: ['10 × 14,8 cm', '14,2 × 21 cm', '14,8 × 14,8 cm (quadrado)', '19 × 19 cm', '9,9 × 21 cm (tag)'] },
+      { nome: 'Papel', valores: ['Couché 250g', 'Perolizado 180g', 'Color Plus 180g', 'Reciclato 240g', 'Diamond telado 180g'] },
+      { nome: 'Composição', valores: ['Só o convite', 'Convite + envelope', 'Convite + envelope + tag'] },
+      { nome: 'Impressão', valores: ['Frente (4x0)', 'Frente e verso (4x4)'] },
       { nome: 'Quantidade', valores: ['50', '100', '150', '200', '300'] },
     ],
   },
@@ -165,11 +205,12 @@ filtros.addEventListener('click', (e) => {
 $('[data-search]').addEventListener('input', (e) => { busca = e.target.value.trim().toLowerCase(); render(); });
 
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const textoBusca = (p) => norm([p.nome, p.desc, ...p.specs, ...p.opcoes.flatMap((o) => o.valores)].join(' '));
 
 function render() {
   const lista = PRODUTOS.filter((p) =>
     (filtro === 'todos' || p.cat === filtro) &&
-    (!busca || norm(p.nome + ' ' + p.desc).includes(norm(busca)))
+    (!busca || textoBusca(p).includes(norm(busca)))
   );
   grid.innerHTML = lista.map((p, i) => `
     <button class="card" type="button" data-id="${p.id}" style="--i:${i}">
@@ -181,9 +222,31 @@ function render() {
         <span class="card__desc">${p.desc}</span>
         <span class="card__go">Personalizar <svg class="ic"><use href="#i-arrow"/></svg></span>
       </div>
-    </button>`).join('');
+    </button>`).join('') + (lista.length ? `
+    <a class="card card--custom" style="--i:${lista.length}" target="_blank" rel="noopener"
+       href="${waLink(`${saudacao()}, Wagner! Vim pelo site da WPrint e preciso de um material que não encontrei no catálogo. Pode me ajudar?`)}">
+      <svg class="card--custom__mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="card--custom__body">
+        <span class="card__name">Não achou o que procura?</span>
+        <span class="card--custom__txt">Conta pra gente o que você precisa. A WPrint faz impressos sob medida.</span>
+      </span>
+      <span class="btn btn--wa btn--sm"><svg class="ic"><use href="#i-wa"/></svg> Pedir sob medida</span>
+    </a>` : '');
   $('[data-empty]').hidden = lista.length > 0;
+  ajustarCustom();
 }
+
+// O card "sob medida" ocupa o espaço que sobra na última linha da grade.
+function ajustarCustom() {
+  const c = $('.card--custom', grid);
+  if (!c) return;
+  const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+  const n = grid.children.length - 1;
+  const span = cols - (n % cols);
+  c.style.gridColumn = `span ${span}`;
+  c.classList.toggle('is-wide', span > 1);
+}
+addEventListener('resize', ajustarCustom);
 grid.addEventListener('click', (e) => {
   const c = e.target.closest('[data-id]');
   if (c) abrirProduto(c.dataset.id);
@@ -201,6 +264,7 @@ function abrirProduto(id) {
   $('[data-pd-cat]').textContent = nomeCat(atual.cat);
   $('[data-pd-title]').textContent = atual.nome;
   $('[data-pd-desc]').textContent = atual.desc;
+  $('[data-pd-specs]').innerHTML = atual.specs.map((s) => `<li>${s}</li>`).join('');
   $('[data-pd-opts]').innerHTML = atual.opcoes.map((o, oi) => `
     <fieldset class="field">
       <span>${o.nome}</span>
@@ -234,8 +298,7 @@ pdForm.addEventListener('submit', (e) => {
   $$('[data-cart-count]').forEach((n) => { n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump'); });
 });
 $('[data-pd-now]').addEventListener('click', () => {
-  const item = lerProduto();
-  window.open(waLink(mensagem([item], {})), '_blank', 'noopener');
+  abrirWhats(mensagem([lerProduto()], {}));
 });
 pd.addEventListener('click', (e) => { if (e.target === pd) pd.close(); }); // clique fora fecha
 
@@ -287,9 +350,15 @@ $('[data-cart-list]').addEventListener('click', (e) => {
   salvar();
 });
 
+const saudacao = () => {
+  const h = new Date().getHours();
+  return h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
+};
+
 function mensagem(itens, { nome, arte, entrega }) {
   const linhas = [
-    `Olá, Wagner! Vim pelo site da *WPrint* e gostaria de um orçamento:`,
+    `${saudacao()}, Wagner! ${nome ? `Aqui é ${nome}. ` : ''}Tudo bem? 😊`,
+    `Vim pelo site da *WPrint* e gostaria de um orçamento ${itens.length > 1 ? `destes ${itens.length} itens` : 'deste item'}:`,
     '',
   ];
   itens.forEach((it, i) => {
@@ -298,19 +367,24 @@ function mensagem(itens, { nome, arte, entrega }) {
     if (it.obs) linhas.push(`• Obs.: ${it.obs}`);
     linhas.push('');
   });
-  if (nome) linhas.push(`*Nome:* ${nome}`);
   if (arte) linhas.push(`*Arte:* ${arte}`);
   if (entrega) linhas.push(`*Entrega:* ${entrega}`);
-  if (nome || arte || entrega) linhas.push('');
-  linhas.push('Aguardo o retorno. Obrigado!');
+  if (arte || entrega) linhas.push('');
+  linhas.push('Pode me passar o valor e o prazo? Obrigado!');
   return linhas.join('\n');
+}
+
+// Abre o WhatsApp; se o navegador bloquear a nova aba, abre na mesma.
+function abrirWhats(texto) {
+  const url = waLink(texto);
+  const w = window.open(url, '_blank');
+  if (!w) location.href = url;
 }
 
 $('[data-send]').addEventListener('click', () => {
   if (!checkout.reportValidity()) return;
   const fd = new FormData(checkout);
-  const texto = mensagem(pedido, { nome: fd.get('nome').trim(), arte: fd.get('arte'), entrega: fd.get('entrega') });
-  window.open(waLink(texto), '_blank', 'noopener');
+  abrirWhats(mensagem(pedido, { nome: fd.get('nome').trim(), arte: fd.get('arte'), entrega: fd.get('entrega') }));
 });
 
 /* ---------- Extras ---------- */
