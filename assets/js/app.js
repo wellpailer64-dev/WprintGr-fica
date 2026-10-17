@@ -4,8 +4,6 @@
    ========================================================== */
 const WHATSAPP = '5511983294003';
 
-const C = '#00A6D6', M = '#E5197A', Y = '#FFC21A', K = '#0E0E14', P = '#FFFFFF';
-
 const CATEGORIAS = [
   { id: 'todos', nome: 'Todos' },
   { id: 'visual', nome: 'Comunicação visual' },
@@ -16,7 +14,7 @@ const CATEGORIAS = [
 
 const PRODUTOS = [
   {
-    id: 'banner', nome: 'Banners', cat: 'visual', tag: 'Mais pedido', bg: '#E3F4FA',
+    id: 'banner', nome: 'Banners', cat: 'visual', tag: 'Mais pedido',
     desc: 'Banner em lona com impressão digital em alta resolução. Ideal para fachadas, eventos e pontos de venda.',
     opcoes: [
       { nome: 'Tamanho', valores: ['60 × 90 cm', '80 × 120 cm', '90 × 150 cm', '100 × 200 cm', 'Personalizado'] },
@@ -25,7 +23,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'placa', nome: 'Placas', cat: 'visual', bg: '#FFF4D6',
+    id: 'placa', nome: 'Placas', cat: 'visual',
     desc: 'Placas de sinalização e identificação para comércios, obras, imóveis e empresas.',
     opcoes: [
       { nome: 'Material', valores: ['PVC', 'PS', 'ACM', 'Não sei, me ajude'] },
@@ -34,7 +32,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'faixa', nome: 'Faixas', cat: 'visual', bg: '#FDE4EF',
+    id: 'faixa', nome: 'Faixas', cat: 'visual',
     desc: 'Faixas em lona para promoções, inaugurações, festas e comunicados.',
     opcoes: [
       { nome: 'Tamanho', valores: ['2 × 0,7 m', '3 × 0,7 m', '4 × 1 m', '5 × 1 m', 'Personalizado'] },
@@ -43,7 +41,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'pedestal', nome: 'Pedestal com Banner', cat: 'visual', bg: '#E8E6F7',
+    id: 'pedestal', nome: 'Pedestal com Banner', cat: 'visual',
     desc: 'Banner com pedestal (estrutura) pronto para montar em lojas, feiras e recepções.',
     opcoes: [
       { nome: 'Modelo', valores: ['X-Banner', 'Roll-up', 'Não sei, me ajude'] },
@@ -52,7 +50,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'cavalete', nome: 'Cavaletes', cat: 'visual', bg: '#E3F4FA',
+    id: 'cavalete', nome: 'Cavaletes', cat: 'visual',
     desc: 'Cavalete de calçada com banner dupla face para chamar atenção na porta do seu negócio.',
     opcoes: [
       { nome: 'Impressão', valores: ['Um lado', 'Dois lados'] },
@@ -61,7 +59,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'cartao', nome: 'Cartões de Visita', cat: 'papelaria', tag: 'Clássico', bg: '#FDE4EF',
+    id: 'cartao', nome: 'Cartões de Visita', cat: 'papelaria', tag: 'Clássico',
     desc: 'Cartões de visita em papel couché com impressão colorida. A primeira impressão da sua marca.',
     opcoes: [
       { nome: 'Quantidade', valores: ['100', '250', '500', '1.000', '2.000'] },
@@ -70,7 +68,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'ima', nome: 'Ímãs de Geladeira', cat: 'promo', bg: '#FFF4D6',
+    id: 'ima', nome: 'Ímãs de Geladeira', cat: 'promo',
     desc: 'Ímãs personalizados: o jeito certo de ficar na porta da geladeira do seu cliente.',
     opcoes: [
       { nome: 'Tamanho', valores: ['5 × 5 cm', '7 × 5 cm', '9 × 5 cm', 'Personalizado'] },
@@ -78,7 +76,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'folheto-pizzaria', nome: 'Folhetos de Pizzaria', cat: 'promo', tag: 'Delivery', bg: '#FFE9D9',
+    id: 'folheto-pizzaria', nome: 'Folhetos de Pizzaria', cat: 'promo', tag: 'Delivery',
     desc: 'Cardápios e folhetos para pizzarias, lanchonetes e delivery. Cores vivas que dão fome.',
     opcoes: [
       { nome: 'Tamanho', valores: ['10 × 15 cm', '15 × 21 cm (A5)', '21 × 30 cm (A4)'] },
@@ -87,7 +85,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'flyer', nome: 'Flyers', cat: 'promo', bg: '#E8E6F7',
+    id: 'flyer', nome: 'Flyers', cat: 'promo',
     desc: 'Flyers para divulgar promoções, eventos e serviços. Distribuição rápida, resultado na hora.',
     opcoes: [
       { nome: 'Tamanho', valores: ['10 × 15 cm', '15 × 21 cm (A5)', '21 × 30 cm (A4)'] },
@@ -96,7 +94,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'nota', nome: 'Notas Fiscais', cat: 'papelaria', bg: '#E6EEF2',
+    id: 'nota', nome: 'Notas Fiscais', cat: 'papelaria',
     desc: 'Blocos de notas fiscais, pedidos e recibos numerados, com vias em papel carbonado.',
     opcoes: [
       { nome: 'Tipo', valores: ['Nota fiscal', 'Pedido', 'Recibo', 'Orçamento'] },
@@ -105,7 +103,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'envelope', nome: 'Envelopes em Geral', cat: 'papelaria', bg: '#FFF4D6',
+    id: 'envelope', nome: 'Envelopes em Geral', cat: 'papelaria',
     desc: 'Envelopes personalizados com a sua marca: carta, ofício, saco e outros formatos.',
     opcoes: [
       { nome: 'Modelo', valores: ['Carta', 'Ofício', 'Saco A4', 'Saco A3', 'Outro'] },
@@ -113,7 +111,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'calendario', nome: 'Calendários de Mesa', cat: 'promo', bg: '#E3F4FA',
+    id: 'calendario', nome: 'Calendários de Mesa', cat: 'promo',
     desc: 'Calendário de mesa personalizado: sua marca à vista o ano inteiro. Ótimo brinde de fim de ano.',
     opcoes: [
       { nome: 'Modelo', valores: ['12 páginas (1 mês por folha)', '6 páginas (2 meses por folha)'] },
@@ -121,7 +119,7 @@ const PRODUTOS = [
     ],
   },
   {
-    id: 'convite', nome: 'Convites de Casamento', cat: 'eventos', tag: 'Especial', bg: '#F6E9EE',
+    id: 'convite', nome: 'Convites de Casamento', cat: 'eventos', tag: 'Especial',
     desc: 'Convites personalizados para casamento, com papel especial e acabamento caprichado.',
     opcoes: [
       { nome: 'Formato', valores: ['Cartão simples', 'Com envelope', 'Cartão + envelope + tag'] },
@@ -130,172 +128,8 @@ const PRODUTOS = [
   },
 ];
 
-/* ---------- Ilustrações (SVG) ---------- */
-const sombra = (cx, cy, rx) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="6" fill="${K}" opacity=".12"/>`;
-const ARTE = {
-  banner: () => `
-    ${sombra(120, 162, 46)}
-    <rect x="116" y="18" width="8" height="142" rx="2" fill="#2A2A36"/>
-    <rect x="84" y="16" width="72" height="6" rx="3" fill="#2A2A36"/>
-    <rect x="88" y="22" width="64" height="118" rx="3" fill="${P}"/>
-    <rect x="88" y="22" width="64" height="46" fill="${C}"/>
-    <path d="M88 68 L152 50 V68 Z" fill="${M}"/>
-    <rect x="96" y="80" width="40" height="7" rx="3" fill="${K}"/>
-    <rect x="96" y="93" width="48" height="4" rx="2" fill="#C9C9D3"/>
-    <rect x="96" y="101" width="34" height="4" rx="2" fill="#C9C9D3"/>
-    <rect x="96" y="118" width="26" height="12" rx="6" fill="${Y}"/>
-    <rect x="96" y="158" width="48" height="5" rx="2.5" fill="#2A2A36"/>`,
-  placa: () => `
-    ${sombra(120, 162, 60)}
-    <rect x="72" y="104" width="6" height="58" fill="#8A8A96"/><rect x="162" y="104" width="6" height="58" fill="#8A8A96"/>
-    <g transform="rotate(-3 120 80)">
-      <rect x="50" y="40" width="140" height="74" rx="8" fill="${K}"/>
-      <rect x="56" y="46" width="128" height="62" rx="5" fill="none" stroke="${Y}" stroke-width="2"/>
-      <rect x="68" y="62" width="70" height="10" rx="4" fill="${P}"/>
-      <rect x="68" y="80" width="48" height="6" rx="3" fill="${Y}"/>
-      <circle cx="160" cy="77" r="14" fill="${M}"/>
-      <path d="M154 77 l4 4 8-8" stroke="${P}" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </g>`,
-  faixa: () => `
-    <path d="M18 64 L40 70 M222 64 L200 70" stroke="#8A8A96" stroke-width="2"/>
-    <path d="M18 116 L40 110 M222 116 L200 110" stroke="#8A8A96" stroke-width="2"/>
-    <path d="M40 68 Q120 76 200 68 V112 Q120 120 40 112 Z" fill="${M}"/>
-    <path d="M40 68 Q120 76 200 68 V80 Q120 88 40 80 Z" fill="${K}" opacity=".15"/>
-    <rect x="64" y="84" width="88" height="11" rx="4" fill="${P}"/>
-    <rect x="160" y="84" width="24" height="11" rx="4" fill="${Y}"/>
-    <rect x="80" y="100" width="72" height="5" rx="2.5" fill="${P}" opacity=".7"/>
-    <circle cx="44" cy="72" r="3" fill="${P}"/><circle cx="196" cy="72" r="3" fill="${P}"/>
-    <circle cx="44" cy="108" r="3" fill="${P}"/><circle cx="196" cy="108" r="3" fill="${P}"/>`,
-  pedestal: () => `
-    ${sombra(120, 164, 50)}
-    <path d="M86 160 L120 92 L154 160" stroke="#2A2A36" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <path d="M92 14 L148 14 M92 150 L148 150" stroke="#2A2A36" stroke-width="3" stroke-linecap="round"/>
-    <rect x="94" y="16" width="52" height="132" rx="2" fill="${P}"/>
-    <rect x="94" y="16" width="52" height="58" fill="#3B2A8C"/>
-    <circle cx="120" cy="45" r="16" fill="${Y}"/>
-    <rect x="102" y="86" width="36" height="7" rx="3" fill="${K}"/>
-    <rect x="102" y="99" width="30" height="4" rx="2" fill="#C9C9D3"/>
-    <rect x="102" y="107" width="34" height="4" rx="2" fill="#C9C9D3"/>
-    <rect x="102" y="126" width="36" height="12" rx="6" fill="${M}"/>`,
-  cavalete: () => `
-    ${sombra(120, 164, 60)}
-    <path d="M78 160 L108 22 L138 22 L168 160" fill="none" stroke="#2A2A36" stroke-width="5" stroke-linejoin="round"/>
-    <path d="M100 30 L146 30 L160 140 L86 140 Z" fill="${P}"/>
-    <path d="M100 30 L146 30 L150 64 L95 64 Z" fill="${C}"/>
-    <rect x="104" y="76" width="38" height="8" rx="3" fill="${K}"/>
-    <rect x="100" y="92" width="46" height="5" rx="2.5" fill="#C9C9D3"/>
-    <rect x="98" y="102" width="50" height="5" rx="2.5" fill="#C9C9D3"/>
-    <circle cx="123" cy="124" r="9" fill="${M}"/>`,
-  cartao: () => `
-    <g transform="rotate(-14 110 100)">
-      <rect x="44" y="64" width="128" height="74" rx="7" fill="${K}"/>
-      <path d="M58 82 l8 20 8-14 8 14 8-20" stroke="${M}" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <g transform="rotate(6 140 90)">
-      ${sombra(140, 146, 60)}
-      <rect x="76" y="52" width="128" height="74" rx="7" fill="${P}"/>
-      <rect x="88" y="66" width="56" height="8" rx="3" fill="${K}"/>
-      <rect x="88" y="79" width="36" height="5" rx="2.5" fill="${M}"/>
-      <rect x="88" y="100" width="64" height="4" rx="2" fill="#C9C9D3"/>
-      <rect x="88" y="108" width="50" height="4" rx="2" fill="#C9C9D3"/>
-      <circle cx="184" cy="72" r="4" fill="${C}"/><circle cx="184" cy="84" r="4" fill="${M}"/><circle cx="184" cy="96" r="4" fill="${Y}"/>
-    </g>`,
-  ima: () => `
-    <rect x="186" y="50" width="8" height="80" rx="4" fill="${K}" opacity=".12"/>
-    <g transform="rotate(-6 100 80)">
-      <rect x="62" y="44" width="96" height="62" rx="8" fill="${Y}"/>
-      <circle cx="88" cy="75" r="16" fill="${M}"/>
-      <path d="M82 70 a6 6 0 0 1 12 0 c0 6 -6 9 -6 13 c0-4-6-7-6-13Z" fill="${P}"/>
-      <rect x="112" y="62" width="34" height="7" rx="3" fill="${K}"/>
-      <rect x="112" y="74" width="28" height="4" rx="2" fill="${K}" opacity=".5"/>
-      <rect x="112" y="84" width="22" height="9" rx="4.5" fill="${K}"/>
-    </g>
-    <g transform="rotate(5 110 130)">
-      <rect x="78" y="114" width="70" height="44" rx="7" fill="${C}"/>
-      <rect x="88" y="126" width="38" height="6" rx="3" fill="${P}"/>
-      <rect x="88" y="138" width="26" height="4" rx="2" fill="${P}" opacity=".7"/>
-    </g>`,
-  'folheto-pizzaria': () => `
-    ${sombra(120, 164, 50)}
-    <g transform="rotate(-5 120 90)">
-      <rect x="74" y="16" width="96" height="140" rx="4" fill="${K}"/>
-      <circle cx="122" cy="70" r="36" fill="#E8A33A"/>
-      <circle cx="122" cy="70" r="30" fill="#F6C451"/>
-      <circle cx="110" cy="58" r="6" fill="#D2381E"/><circle cx="134" cy="62" r="6" fill="#D2381E"/>
-      <circle cx="118" cy="82" r="6" fill="#D2381E"/><circle cx="138" cy="80" r="5" fill="#D2381E"/>
-      <circle cx="104" cy="74" r="3" fill="#3C8C3C"/><circle cx="126" cy="70" r="3" fill="#3C8C3C"/>
-      <path d="M122 70 L158 54 A36 36 0 0 1 158 86 Z" fill="${K}"/>
-      <rect x="86" y="116" width="54" height="9" rx="3" fill="${Y}"/>
-      <rect x="86" y="130" width="70" height="4" rx="2" fill="${P}" opacity=".6"/>
-      <rect x="86" y="139" width="40" height="8" rx="4" fill="${M}"/>
-    </g>`,
-  flyer: () => `
-    <g transform="rotate(8 150 90)">
-      <rect x="112" y="24" width="84" height="120" rx="4" fill="${Y}"/>
-    </g>
-    ${sombra(108, 164, 46)}
-    <g transform="rotate(-6 100 90)">
-      <rect x="58" y="20" width="88" height="128" rx="4" fill="${P}"/>
-      <path d="M58 20 h88 v62 L58 100 Z" fill="${M}"/>
-      <text x="68" y="62" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="${P}">50%</text>
-      <rect x="68" y="70" width="40" height="5" rx="2.5" fill="${P}" opacity=".8"/>
-      <rect x="68" y="108" width="60" height="6" rx="3" fill="${K}"/>
-      <rect x="68" y="120" width="44" height="4" rx="2" fill="#C9C9D3"/>
-      <rect x="68" y="130" width="28" height="9" rx="4.5" fill="${C}"/>
-    </g>`,
-  nota: () => `
-    ${sombra(120, 162, 54)}
-    <rect x="72" y="32" width="100" height="126" rx="3" fill="#F2B8CF"/>
-    <rect x="70" y="28" width="100" height="126" rx="3" fill="#BDE6F4"/>
-    <rect x="68" y="24" width="100" height="126" rx="3" fill="${P}"/>
-    <rect x="68" y="24" width="100" height="12" rx="3" fill="${K}"/>
-    <g fill="#E9E9EE">${[0,1,2,3,4,5,6,7].map(i=>`<circle cx="${76+i*12}" cy="30" r="2.5"/>`).join('')}</g>
-    <rect x="78" y="46" width="44" height="7" rx="3" fill="${K}"/>
-    <text x="134" y="53" font-family="Inter, sans-serif" font-weight="700" font-size="9" fill="${M}">Nº 0001</text>
-    <g fill="#D9D9E0">${[0,1,2,3,4,5].map(i=>`<rect x="78" y="${66+i*12}" width="80" height="1.5"/>`).join('')}</g>
-    <rect x="78" y="134" width="50" height="5" rx="2.5" fill="${C}"/>`,
-  envelope: () => `
-    ${sombra(120, 150, 68)}
-    <g transform="rotate(-4 120 95)">
-      <rect x="44" y="50" width="152" height="94" rx="6" fill="${P}"/>
-      <path d="M44 56 L120 104 L196 56" fill="none" stroke="#E2E2E8" stroke-width="2"/>
-      <path d="M44 56 a6 6 0 0 1 6-6 h140 a6 6 0 0 1 6 6 L120 100 Z" fill="#F4F4F7"/>
-      <circle cx="120" cy="96" r="12" fill="${M}"/>
-      <path d="M114 92 l6 6 6-10" stroke="${P}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <rect x="56" y="122" width="40" height="5" rx="2.5" fill="${K}"/>
-      <rect x="56" y="131" width="28" height="4" rx="2" fill="#C9C9D3"/>
-      <rect x="168" y="118" width="18" height="18" rx="2" fill="${C}"/>
-    </g>`,
-  calendario: () => `
-    ${sombra(120, 160, 66)}
-    <path d="M58 156 L84 40 L156 40 L182 156 Z" fill="#2A2A36"/>
-    <g>
-      <rect x="66" y="44" width="108" height="112" rx="4" fill="${P}"/>
-      <g fill="${K}">${[0,1,2,3,4,5,6,7,8,9].map(i=>`<rect x="${76+i*9.5}" y="38" width="3" height="12" rx="1.5"/>`).join('')}</g>
-      <rect x="66" y="52" width="108" height="26" fill="${C}"/>
-      <text x="76" y="71" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="14" fill="${P}">JANEIRO</text>
-      <g fill="#E1E1E7">${Array.from({length:21}).map((_,i)=>`<rect x="${76+(i%7)*13}" y="${86+Math.floor(i/7)*14}" width="9" height="9" rx="2"/>`).join('')}</g>
-      <rect x="115" y="100" width="9" height="9" rx="2" fill="${M}"/>
-      <rect x="76" y="132" width="36" height="5" rx="2.5" fill="${Y}"/>
-      <rect x="76" y="141" width="56" height="4" rx="2" fill="#C9C9D3"/>
-    </g>`,
-  convite: () => `
-    ${sombra(120, 160, 64)}
-    <g transform="rotate(-8 100 110)">
-      <rect x="46" y="70" width="132" height="84" rx="4" fill="#E9D3DC"/>
-      <path d="M46 74 L112 118 L178 74" fill="none" stroke="#D9BCC8" stroke-width="2"/>
-    </g>
-    <g transform="rotate(5 130 80)">
-      <rect x="86" y="18" width="92" height="124" rx="4" fill="${P}"/>
-      <rect x="92" y="24" width="80" height="112" rx="2" fill="none" stroke="#C8A96A" stroke-width="1.2"/>
-      <path d="M132 50 c-5-8-17-4-14 5 c2 6 14 13 14 13 s12-7 14-13 c3-9-9-13-14-5Z" fill="${M}"/>
-      <text x="132" y="88" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="13" fill="${K}">Ana &amp; João</text>
-      <rect x="112" y="98" width="40" height="3" rx="1.5" fill="#C8A96A"/>
-      <rect x="106" y="108" width="52" height="3" rx="1.5" fill="#D9D9E0"/>
-      <rect x="114" y="116" width="36" height="3" rx="1.5" fill="#D9D9E0"/>
-    </g>`,
-};
-const arte = (p) => `<svg viewBox="0 0 240 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${ARTE[p.id]()}</svg>`;
+/* ---------- Fotos dos produtos (assets/img/produtos/<id>.webp) ---------- */
+const arte = (p) => `<img src="assets/img/produtos/${p.id}.webp" alt="${p.nome}" width="1200" height="900" loading="lazy" decoding="async">`;
 
 /* ---------- Utilidades ---------- */
 const $ = (s, el = document) => el.querySelector(s);
@@ -338,7 +172,7 @@ function render() {
     (!busca || norm(p.nome + ' ' + p.desc).includes(norm(busca)))
   );
   grid.innerHTML = lista.map((p, i) => `
-    <button class="card" type="button" data-id="${p.id}" style="--i:${i};--bg:${p.bg}">
+    <button class="card" type="button" data-id="${p.id}" style="--i:${i}">
       ${p.tag ? `<span class="card__tag">${p.tag}</span>` : ''}
       <div class="card__art">${arte(p)}</div>
       <div class="card__body">
@@ -363,7 +197,6 @@ function abrirProduto(id) {
   atual = PRODUTOS.find((p) => p.id === id);
   if (!atual) return;
   pdForm.reset();
-  $('[data-pd-art]').style.setProperty('--bg', atual.bg);
   $('[data-pd-art]').innerHTML = arte(atual);
   $('[data-pd-cat]').textContent = nomeCat(atual.cat);
   $('[data-pd-title]').textContent = atual.nome;
@@ -435,7 +268,7 @@ function renderPedido() {
     const p = PRODUTOS.find((x) => x.id === it.id);
     return `
       <li class="citem">
-        <div class="citem__art" style="--bg:${p?.bg ?? ''}">${p ? arte(p) : ''}</div>
+        <div class="citem__art">${p ? arte(p) : ''}</div>
         <div>
           <b>${esc(it.nome)}</b>
           <ul>
