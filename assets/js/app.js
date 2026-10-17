@@ -168,8 +168,14 @@ const PRODUTOS = [
   },
 ];
 
+/* ---------- Taxa de criação de arte (até 2 alterações) ---------- */
+// R$ 50 artes simples · R$ 60 artes complexas/várias páginas · R$ 90 os itens abaixo.
+const TAXA_ARTE = { padrao: 50, 'folheto-pizzaria': 90, calendario: 90, convite: 90 };
+const taxaArte = (p) => TAXA_ARTE[p.id] ?? TAXA_ARTE.padrao;
+const reais = (v) => `R$ ${v}`;
+
 /* ---------- Fotos dos produtos (assets/img/produtos/<id>.webp) ---------- */
-const arte = (p) => `<img src="assets/img/produtos/${p.id}.webp" alt="${p.nome}" width="1200" height="900" loading="lazy" decoding="async">`;
+const foto = (p) => `<img src="assets/img/produtos/${p.id}.webp" alt="${p.nome}" width="1200" height="900" loading="lazy" decoding="async">`;
 
 /* ---------- Utilidades ---------- */
 const $ = (s, el = document) => el.querySelector(s);
@@ -215,7 +221,7 @@ function render() {
   grid.innerHTML = lista.map((p, i) => `
     <button class="card" type="button" data-id="${p.id}" style="--i:${i}">
       ${p.tag ? `<span class="card__tag">${p.tag}</span>` : ''}
-      <div class="card__art">${arte(p)}</div>
+      <div class="card__art">${foto(p)}</div>
       <div class="card__body">
         <span class="card__cat">${nomeCat(p.cat)}</span>
         <span class="card__name">${p.nome}</span>
@@ -260,7 +266,7 @@ function abrirProduto(id) {
   atual = PRODUTOS.find((p) => p.id === id);
   if (!atual) return;
   pdForm.reset();
-  $('[data-pd-art]').innerHTML = arte(atual);
+  $('[data-pd-art]').innerHTML = foto(atual);
   $('[data-pd-cat]').textContent = nomeCat(atual.cat);
   $('[data-pd-title]').textContent = atual.nome;
   $('[data-pd-desc]').textContent = atual.desc;
@@ -272,7 +278,15 @@ function abrirProduto(id) {
         ${o.valores.map((v, vi) => `
           <label><input type="radio" name="op${oi}" value="${esc(v)}" ${vi === 0 ? 'checked' : ''}><span>${v}</span></label>`).join('')}
       </div>
-    </fieldset>`).join('');
+    </fieldset>`).join('') + `
+    <fieldset class="field">
+      <span>Arte</span>
+      <div class="seg seg--arte">
+        <label><input type="radio" name="arte" value="" checked><span>Já tenho a arte</span></label>
+        <label><input type="radio" name="arte" value="sim"><span>Quero que a WPrint crie <small>+ ${reais(taxaArte(atual))}</small></span></label>
+      </div>
+      <small class="field__hint">Criação com até 2 alterações incluídas.</small>
+    </fieldset>`;
   pd.showModal();
   pd.querySelector('.sheet__in').scrollTop = 0;
 }
@@ -284,9 +298,14 @@ function lerProduto() {
     id: atual.id,
     nome: atual.nome,
     opcoes: atual.opcoes.map((o, oi) => [o.nome, fd.get(`op${oi}`)]),
+    taxaArte: fd.get('arte') ? taxaArte(atual) : 0,
     obs: (fd.get('obs') || '').trim(),
   };
 }
+
+const textoArte = (it) => it.taxaArte
+  ? `Criação pela WPrint (${reais(it.taxaArte)}, até 2 alterações)`
+  : 'Já tenho a arte';
 
 pdForm.addEventListener('submit', (e) => {
   if (e.submitter?.value !== 'add') return;
@@ -331,18 +350,24 @@ function renderPedido() {
     const p = PRODUTOS.find((x) => x.id === it.id);
     return `
       <li class="citem">
-        <div class="citem__art">${p ? arte(p) : ''}</div>
+        <div class="citem__art">${p ? foto(p) : ''}</div>
         <div>
           <b>${esc(it.nome)}</b>
           <ul>
             ${it.opcoes.map(([k, v]) => `<li>${esc(k)}: ${esc(v)}</li>`).join('')}
+            <li class="${it.taxaArte ? 'is-arte' : ''}">Arte: ${textoArte(it)}</li>
             ${it.obs ? `<li>Obs.: ${esc(it.obs)}</li>` : ''}
           </ul>
         </div>
         <button class="citem__rm" type="button" data-rm="${it.uid}" aria-label="Remover ${esc(it.nome)}"><svg class="ic"><use href="#i-trash"/></svg></button>
       </li>`;
   }).join('');
+  const taxa = totalArte(pedido);
+  $('[data-arte-total]').hidden = !taxa;
+  $('[data-arte-total] b').textContent = reais(taxa);
 }
+
+const totalArte = (itens) => itens.reduce((s, it) => s + (it.taxaArte || 0), 0);
 $('[data-cart-list]').addEventListener('click', (e) => {
   const b = e.target.closest('[data-rm]');
   if (!b) return;
@@ -355,7 +380,7 @@ const saudacao = () => {
   return h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
 };
 
-function mensagem(itens, { nome, arte, entrega }) {
+function mensagem(itens, { nome, entrega }) {
   const linhas = [
     `${saudacao()}, Wagner! ${nome ? `Aqui é ${nome}. ` : ''}Tudo bem? 😊`,
     `Vim pelo site da *WPrint* e gostaria de um orçamento ${itens.length > 1 ? `destes ${itens.length} itens` : 'deste item'}:`,
@@ -364,12 +389,14 @@ function mensagem(itens, { nome, arte, entrega }) {
   itens.forEach((it, i) => {
     linhas.push(`*${i + 1}. ${it.nome}*`);
     it.opcoes.forEach(([k, v]) => linhas.push(`• ${k}: ${v}`));
+    linhas.push(`• Arte: ${textoArte(it)}`);
     if (it.obs) linhas.push(`• Obs.: ${it.obs}`);
     linhas.push('');
   });
-  if (arte) linhas.push(`*Arte:* ${arte}`);
+  const taxa = totalArte(itens);
+  if (taxa) linhas.push(`*Criação de arte:* ${reais(taxa)}`);
   if (entrega) linhas.push(`*Entrega:* ${entrega}`);
-  if (arte || entrega) linhas.push('');
+  if (taxa || entrega) linhas.push('');
   linhas.push('Pode me passar o valor e o prazo? Obrigado!');
   return linhas.join('\n');
 }
@@ -384,7 +411,7 @@ function abrirWhats(texto) {
 $('[data-send]').addEventListener('click', () => {
   if (!checkout.reportValidity()) return;
   const fd = new FormData(checkout);
-  abrirWhats(mensagem(pedido, { nome: fd.get('nome').trim(), arte: fd.get('arte'), entrega: fd.get('entrega') }));
+  abrirWhats(mensagem(pedido, { nome: fd.get('nome').trim(), entrega: fd.get('entrega') }));
 });
 
 /* ---------- Extras ---------- */

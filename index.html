@@ -151,7 +151,7 @@
           <li>
             <span class="steps__n">02</span>
             <h3>Envie pelo WhatsApp</h3>
-            <p>Seu pedido vai prontinho para o nosso WhatsApp. Lá você manda sua arte ou pede a criação.</p>
+            <p>Seu pedido vai prontinho para o nosso WhatsApp. Lá você manda sua arte, ou a gente cria pra você a partir de R$ 50.</p>
           </li>
           <li>
             <span class="steps__n">03</span>
@@ -206,7 +206,7 @@
         <div class="faq__list">
           <details>
             <summary>Preciso ter a arte pronta?</summary>
-            <p>Não. Se você já tiver a arte, é só mandar pelo WhatsApp (PDF, PNG ou JPG em boa resolução). Se não tiver, a gente cria pra você. Basta marcar essa opção no pedido.</p>
+            <p>Não. Se você já tiver a arte, é só mandar pelo WhatsApp (PDF, PNG ou JPG em boa resolução). Se não tiver, a gente cria pra você: basta marcar “Quero que a WPrint crie” no produto. A criação custa R$ 50 para artes simples (cartão, panfleto, banner…), R$ 60 para artes mais complexas ou com várias páginas e R$ 90 para folhetos de pizzaria, calendários e convites de casamento. Todas incluem até 2 alterações.</p>
           </details>
           <details>
             <summary>Como recebo o valor do meu pedido?</summary>
@@ -322,13 +322,6 @@
             <input name="nome" autocomplete="name" placeholder="Como podemos te chamar?" required>
           </label>
           <fieldset class="field">
-            <span>Arte</span>
-            <div class="seg">
-              <label><input type="radio" name="arte" value="Já tenho a arte pronta" checked><span>Já tenho a arte</span></label>
-              <label><input type="radio" name="arte" value="Preciso da criação da arte"><span>Preciso de criação</span></label>
-            </div>
-          </fieldset>
-          <fieldset class="field">
             <span>Entrega</span>
             <div class="seg">
               <label><input type="radio" name="entrega" value="Retirar na gráfica" checked><span>Vou retirar</span></label>
@@ -338,7 +331,8 @@
         </form>
       </div>
       <footer class="drawer__foot" data-cart-foot hidden>
-        <p class="drawer__note">O valor é confirmado pelo WhatsApp de acordo com as opções escolhidas.</p>
+        <p class="drawer__total" data-arte-total hidden>Criação de arte <b></b></p>
+        <p class="drawer__note">O valor da impressão é confirmado pelo WhatsApp de acordo com as opções escolhidas.</p>
         <button type="button" class="btn btn--wa btn--block" data-send>
           <svg class="ic"><use href="#i-wa"/></svg> Finalizar pelo WhatsApp
         </button>
