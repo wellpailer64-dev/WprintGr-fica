@@ -572,11 +572,11 @@ dialog[open]::backdrop { animation: fade .3s ease; }
   .sheet { inset: 0; margin: auto; width: min(920px, calc(100% - 48px)); height: fit-content; }
   .sheet[open] { animation: pop .4s var(--ease); }
   @keyframes pop { from { transform: scale(.96); opacity: 0; } }
-  .sheet__in { border-radius: var(--r-lg); display: grid; grid-template-columns: 1fr 1fr; max-height: min(720px, 90vh); overflow: hidden; }
-  .pd__art { aspect-ratio: auto; max-height: none; height: 100%; grid-row: 1 / 3; }
-  .pd__art { display: grid; place-items: center; }
-  .pd__art img { height: auto; object-fit: contain; }
-  .pd__body { overflow: auto; padding: 36px 32px 8px; }
+  /* Altura fixa: a coluna de opções rola por dentro e a foto ocupa a coluna inteira, sem cortar */
+  .sheet__in { border-radius: var(--r-lg); display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) auto; height: min(720px, 90vh); overflow: hidden; }
+  .pd__art { position: relative; aspect-ratio: auto; max-height: none; min-height: 0; grid-row: 1 / 3; }
+  .pd__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .pd__body { overflow: auto; min-height: 0; padding: 36px 32px 8px; }
   .sheet__foot { grid-column: 2; padding: 16px 32px 28px; }
   .drawer { inset: 0 0 0 auto; height: 100%; width: 440px; }
   .drawer[open] { animation: slideIn .45s var(--ease); }
